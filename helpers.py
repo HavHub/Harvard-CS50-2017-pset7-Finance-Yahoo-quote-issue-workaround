@@ -151,34 +151,34 @@ def lookup(symbol):
     # https://www.alphavantage.co/documentation/
     try:
     
-    # GET CSV
-    url = "https://www.alphavantage.co/query?apikey=NAJXWIA8D6VN6A3K&datatype=csv&function=TIME_SERIES_INTRADAY&interval=1min&symbol={}".format(symbol)
-    webpage = urllib.request.urlopen(url)
+        # GET CSV
+        url = "https://www.alphavantage.co/query?apikey=NAJXWIA8D6VN6A3K&datatype=csv&function=TIME_SERIES_INTRADAY&interval=1min&symbol={}".format(symbol)
+        webpage = urllib.request.urlopen(url)
     
-    # parse CSV
-    datareader = csv.reader(webpage.read().decode("utf-8").splitlines())
+        # parse CSV
+        datareader = csv.reader(webpage.read().decode("utf-8").splitlines())
     
-    # ignore first row
-    next(datareader)
+        # ignore first row
+        next(datareader)
     
-    # parse second row
-    row = next(datareader)
+        # parse second row
+        row = next(datareader)
     
-    # ensure stock exists
-    try:
-        price = float(row[4])
-    except:
-        return None
+        # ensure stock exists
+        try:
+            price = float(row[4])
+        except:
+            return None
     
-    # return stock's name (as a str), price (as a float), and (uppercased) symbol (as a str)
-    return {
-        "name": symbol.upper(), # for backward compatibility with Yahoo
-        "price": price,
-        "symbol": symbol.upper()
-    }
+        # return stock's name (as a str), price (as a float), and (uppercased) symbol (as a str)
+        return {
+            "name": symbol.upper(), # for backward compatibility with Yahoo
+            "price": price,
+            "symbol": symbol.upper()
+        }
 
-    except:
-        return None
+        except:
+            return None
 
 
 def usd(value):
