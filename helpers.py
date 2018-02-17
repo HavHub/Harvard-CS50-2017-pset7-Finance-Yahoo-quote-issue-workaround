@@ -177,8 +177,8 @@ def lookup(symbol):
             "symbol": symbol.upper()
         }
 
-        except:
-            return None
+    except:
+        return None
 
 
 def usd(value):
